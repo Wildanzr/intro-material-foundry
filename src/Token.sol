@@ -7,18 +7,15 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 contract Token is ERC20, Ownable {
     event TestEvent(address indexed from, address indexed to, uint256 amount);
 
-    constructor() 
-    ERC20("Meong", "MEOW", 18) 
-    Ownable(msg.sender)
-    {}
+    constructor() ERC20("Meong", "MEOW", 18) Ownable(msg.sender) {}
 
     function transferA(address from, address to, uint256 amount) public {
-      emit TestEvent(from, to, amount);
+        emit TestEvent(from, to, amount);
     }
 
     function transferAMany(address from, address[] calldata to, uint256[] calldata amount) public {
-      for (uint256 i = 0; i < to.length; i++) {
-        emit TestEvent(from, to[i], amount[i]);
-      }
+        for (uint256 i = 0; i < to.length; i++) {
+            emit TestEvent(from, to[i], amount[i]);
+        }
     }
 }
